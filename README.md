@@ -68,18 +68,26 @@ A **Claude AI-generated scaffold** that understands your exact stack combination
 
 ## 🔄 How It Works
 
-**1. User Input** → Type your tech stack (e.g. "Next.js + FastAPI + PostgreSQL")
+```mermaid
+flowchart TD
+    A[👤 User visits DevLaunch] --> B[⌨️ Types tech stack\ne.g. Next.js + FastAPI + PostgreSQL]
+    B --> C{✅ Input Validation\nIs it a real tech stack?}
+    C -->|❌ Invalid| D[⚠️ Show error message]
+    C -->|✅ Valid| E[📡 POST /generate\nFastAPI Backend on Render]
+    E --> F[🤖 Claude AI\nclaude-opus-4-6\n4096 max tokens]
+    F --> G[📝 Parse Response\nExtract individual files\nBuild file tree]
+    G --> H[🖥️ Next.js Frontend\nDisplay results]
+    H --> I[📁 Interactive File Tree]
+    H --> J[✨ AI File Explanation]
+    H --> K[⬇️ Download ZIP]
+    H --> L[🚀 Push to GitHub]
+    L --> M[✅ Real GitHub Repo Created\nAll files pushed automatically]
 
-**2. Validation** → Smart detection confirms it's a real tech stack
-
-**3. FastAPI Backend** → Sends structured prompt to Claude API via POST /generate
-
-**4. Claude AI** → Generates complete production-ready scaffold (claude-opus-4-6, 4096 tokens)
-
-**5. Response Parsing** → Extracts individual files from markdown response
-
-**6. Next.js Frontend** → Displays interactive file tree, code view, AI explanations, ZIP download, GitHub push
----
+    style A fill:#7c3aed,color:#fff
+    style F fill:#d97706,color:#fff
+    style M fill:#22c55e,color:#fff
+    style D fill:#ef4444,color:#fff
+```
 
 ## 🛠️ Tech Stack
 
@@ -103,19 +111,31 @@ A **Claude AI-generated scaffold** that understands your exact stack combination
 ---
 
 ## 📁 Project Structure
-## 🔄 How It Works
 
-**1. User Input** → Type your tech stack (e.g. "Next.js + FastAPI + PostgreSQL")
+```mermaid
+graph TD
+    A[📦 devlaunch] --> B[🖥️ frontend/]
+    A --> C[⚙️ backend/]
+    A --> D[📄 README.md]
 
-**2. Validation** → Smart detection confirms it's a real tech stack
+    B --> B1[📁 app/]
+    B --> B2[📄 package.json]
+    B --> B3[📄 next.config.ts]
+    B --> B4[📄 globals.css]
 
-**3. FastAPI Backend** → Sends structured prompt to Claude API via POST /generate
+    B1 --> B1A[📄 page.tsx\nMain UI]
+    B1 --> B1B[📄 layout.tsx\nRoot layout]
 
-**4. Claude AI** → Generates complete production-ready scaffold (claude-opus-4-6, 4096 tokens)
+    C --> C1[📄 main.py\nAll 4 API endpoints]
+    C --> C2[📄 requirements.txt\nDependencies]
+    C --> C3[📄 .env\nAPI Keys]
 
-**5. Response Parsing** → Extracts individual files from markdown response
-
-**6. Next.js Frontend** → Displays interactive file tree, code view, AI explanations, ZIP download, GitHub push
+    style A fill:#7c3aed,color:#fff
+    style B fill:#4f46e5,color:#fff
+    style C fill:#059669,color:#fff
+    style B1 fill:#1e1b4b,color:#fff
+    style C1 fill:#064e3b,color:#fff
+```
 ## ⚡ Quick Start
 
 ### Prerequisites
