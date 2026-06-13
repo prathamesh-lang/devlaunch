@@ -1,168 +1,123 @@
-"use client";
-// "use client" — tells Next.js this component runs in the browser, not on the server.
-// We need this because we're using useState and handling user interactions (clicks, input).
-// Without this, Next.js tries to render it on the server, which can't handle browser events.
-
-import { useState } from "react";
-// useState — React hook that lets us store and update values in the component.
-// Every time a useState value changes, React re-renders the component automatically.
+'use client'
+import { useState } from "react"
 
 export default function Home() {
-  const [stack, setStack] = useState("");
-  // stack — stores whatever the user types in the input box.
-  // setStack — the function we call to update it.
-  // "" — starts as empty string.
-
-  const [output, setOutput] = useState("");
-  // output — stores the AI-generated scaffold text returned from our backend.
-  // Starts empty, gets filled after the API call succeeds.
-
-  const [loading, setLoading] = useState(false);
-  // loading — boolean (true/false) to track if we're waiting for the API response.
-  // We use this to show "Generating..." on the button so user knows something is happening.
-
-  const [error, setError] = useState("");
-  // error — stores any error message to show the user if something goes wrong.
+  const [stack, setStack] = useState("")
+  const [scaffold, setScaffold] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
 
   const handleGenerate = async () => {
-    // async function — because we're making an API call which takes time.
-    // We use await inside to pause and wait for the response before continuing.
-
-    if (!stack.trim()) return;
-    // .trim() removes whitespace from both ends of the string.
-    // If the input is empty or just spaces, we do nothing (return early).
-
-    setLoading(true);   // Show "Generating..." on button
-    setError("");       // Clear any previous error
-    setOutput("");      // Clear any previous output
+    if (!stack.trim()) return
+    setLoading(true)
+    setError("")
+    setScaffold("")
 
     try {
-      const response = await fetch("http://localhost:8000/generate", {
-        // fetch — browser's built-in function to make HTTP requests.
-        // We're calling our FastAPI backend running on port 8000.
-        // "/generate" is the endpoint we'll create in FastAPI.
-
+      const response = await fetch("https://devlaunch-backend-o7j6.onrender.com/generate", {
         method: "POST",
-        // POST because we're sending data (the stack) to the server.
-        // GET is for fetching data, POST is for sending data.
-
-        headers: {
-          "Content-Type": "application/json",
-          // Tells the server: "I'm sending JSON, not a form or plain text."
-          // FastAPI needs this to correctly parse the request body.
-        },
-
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ stack }),
-        // JSON.stringify converts the JS object { stack: "FastAPI + React" }
-        // into a JSON string: '{"stack":"FastAPI + React"}'
-        // That's what gets sent over the network.
-      });
+      })
 
-      if (!response.ok) {
-        // response.ok is true if HTTP status is 200-299.
-        // If server returns 400, 500, etc., we throw an error.
-        throw new Error("Server error. Try again.");
-      }
-
-      const data = await response.json();
-      // response.json() parses the JSON response body from FastAPI.
-      // await because parsing is also async.
-      // data will be: { scaffold: "...the generated text..." }
-
-      setOutput(data.scaffold);
-      // Update output state with the scaffold text.
-      // React re-renders and shows the result on screen.
-
-    } catch (err) {
-      setError("Something went wrong. Make sure the backend is running.");
-      // Catches network errors (backend offline, wrong URL, etc.)
-      // and shows a user-friendly message.
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.detail || "Something went wrong")
+      setScaffold(data.scaffold)
+    } catch (err: any) {
+      setError(err.message)
     } finally {
-      setLoading(false);
-      // finally runs whether the try succeeded or catch fired.
-      // Always turn off loading spinner when done.
+      setLoading(false)
     }
-  };
+  }
 
   return (
-    <main className="min-h-screen bg-gray-950 text-white flex flex-col items-center px-4 py-16">
-      {/* min-h-screen — full viewport height */}
-      {/* bg-gray-950 — very dark background, pro look */}
-      {/* flex flex-col items-center — center everything vertically stacked */}
-      {/* px-4 py-16 — horizontal padding 16px, vertical padding 64px */}
+    <main className="min-h-screen bg-black text-white">
 
-      {/* HEADER */}
-      <div className="text-center mb-12">
-        <h1 className="text-5xl font-extrabold text-white mb-3 tracking-tight">
-          🚀 DevLaunch
+      {/* HERO SECTION */}
+      <div className="flex flex-col items-center justify-center px-6 pt-20 pb-10">
+        <div className="inline-block bg-zinc-900 border border-zinc-700 rounded-full px-4 py-1 text-sm text-zinc-400 mb-6">
+          Stop wasting time on setup. Start building.
+        </div>
+        <h1 className="text-5xl font-bold text-center mb-4">
+          Generate your project scaffold
+          <span className="text-violet-400"> in seconds</span>
         </h1>
-        <p className="text-gray-400 text-lg">
-          Type your tech stack. Get a production-ready project scaffold instantly.
+        <p className="text-zinc-400 text-center text-lg max-w-xl mb-10">
+          Type your tech stack. DevLaunch generates every file, every config, every folder — production ready. Instantly.
         </p>
+
+        {/* INPUT BOX */}
+        <div className="w-full max-w-2xl">
+          <div className="flex flex-col gap-3">
+            <input
+              type="text"
+              value={stack}
+              onChange={(e) => setStack(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleGenerate()}
+              placeholder="e.g. FastAPI + React + PostgreSQL"
+              className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-5 py-4 text-white placeholder-zinc-500 focus:outline-none focus:border-violet-500 text-lg"
+            />
+            <button
+              onClick={handleGenerate}
+              disabled={loading || !stack.trim()}
+              className="w-full bg-violet-600 hover:bg-violet-700 disabled:bg-zinc-700 disabled:cursor-not-allowed rounded-xl px-5 py-4 font-semibold text-lg transition-all"
+            >
+              {loading ? "Generating your scaffold..." : "Generate Scaffold →"}
+            </button>
+          </div>
+
+          {/* EXAMPLE TAGS */}
+          <div className="flex flex-wrap gap-2 mt-4">
+            {["Next.js + FastAPI + PostgreSQL", "React + Node.js + MongoDB", "Next.js + Supabase", "FastAPI + Redis + Docker"].map((example) => (
+              <button
+                key={example}
+                onClick={() => setStack(example)}
+                className="bg-zinc-900 border border-zinc-700 rounded-full px-3 py-1 text-sm text-zinc-400 hover:border-violet-500 hover:text-violet-400 transition-all"
+              >
+                {example}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* INPUT CARD */}
-      <div className="w-full max-w-2xl bg-gray-900 rounded-2xl p-8 shadow-xl">
+      {/* ERROR */}
+      {error && (
+        <div className="max-w-2xl mx-auto px-6 mb-6">
+          <div className="bg-red-900/30 border border-red-500 rounded-xl px-5 py-4 text-red-400">
+            {error}
+          </div>
+        </div>
+      )}
 
-        <label className="block text-sm font-semibold text-gray-300 mb-2">
-          Your Tech Stack
-        </label>
-        {/* block — makes label take full width on its own line */}
+      {/* LOADING STATE */}
+      {loading && (
+        <div className="max-w-2xl mx-auto px-6 mb-6">
+          <div className="bg-zinc-900 border border-zinc-700 rounded-xl px-5 py-8 text-center">
+            <div className="text-zinc-400 text-lg mb-2">Claude is generating your scaffold...</div>
+            <div className="text-zinc-600 text-sm">This takes about 10-15 seconds</div>
+          </div>
+        </div>
+      )}
 
-        <input
-          type="text"
-          value={stack}
-          onChange={(e) => setStack(e.target.value)}
-          // onChange fires every time user types a character.
-          // e.target.value is the current text in the input box.
-          // We update stack state, which updates the input display.
-
-          onKeyDown={(e) => e.key === "Enter" && handleGenerate()}
-          // Let user press Enter to trigger generation. Better UX.
-
-          placeholder="e.g. FastAPI + React + PostgreSQL"
-          className="w-full bg-gray-800 text-white placeholder-gray-500 border border-gray-700 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-violet-500 transition"
-        // focus:border-violet-500 — border turns purple when user clicks the input.
-        // transition — smooth color change animation.
-        />
-
-        <button
-          onClick={handleGenerate}
-          disabled={loading}
-          // disabled={loading} — button can't be clicked while waiting for response.
-          // Prevents duplicate requests.
-
-          className="mt-4 w-full bg-violet-600 hover:bg-violet-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white font-bold py-3 rounded-xl transition text-base"
-        // hover:bg-violet-700 — darker purple on hover
-        // disabled:bg-gray-700 — gray when disabled
-        // disabled:cursor-not-allowed — shows ⊘ cursor when disabled
-        >
-          {loading ? "Generating..." : "Generate Scaffold ⚡"}
-          {/* Ternary operator: if loading is true show "Generating...", else show normal text */}
-        </button>
-
-        {/* ERROR MESSAGE */}
-        {error && (
-          <p className="mt-4 text-red-400 text-sm">{error}</p>
-          // Only renders if error string is not empty.
-          // Short-circuit rendering: {condition && <JSX>}
-        )}
-      </div>
-
-      {/* OUTPUT AREA — only shows when output is not empty */}
-      {output && (
-        <div className="w-full max-w-2xl mt-8 bg-gray-900 rounded-2xl p-8 shadow-xl">
-          <h2 className="text-lg font-bold text-violet-400 mb-4">
-            Generated Scaffold
-          </h2>
-          <pre className="text-sm text-gray-300 whitespace-pre-wrap break-words leading-relaxed">
-            {/* pre — preserves whitespace and line breaks exactly as returned from API */}
-            {/* whitespace-pre-wrap — wraps long lines instead of horizontal scroll */}
-            {output}
+      {/* RESULT */}
+      {scaffold && (
+        <div className="max-w-4xl mx-auto px-6 pb-20">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-semibold text-white">Your Scaffold is Ready</h2>
+            <button
+              onClick={() => navigator.clipboard.writeText(scaffold)}
+              className="bg-zinc-800 hover:bg-zinc-700 border border-zinc-600 rounded-lg px-4 py-2 text-sm text-zinc-300 transition-all"
+            >
+              Copy All
+            </button>
+          </div>
+          <pre className="bg-zinc-900 border border-zinc-700 rounded-xl p-6 text-sm text-zinc-300 overflow-x-auto whitespace-pre-wrap leading-relaxed">
+            {scaffold}
           </pre>
         </div>
       )}
 
     </main>
-  );
+  )
 }
