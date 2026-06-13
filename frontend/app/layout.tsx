@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "DevLaunch",
-  description: "Generate project scaffolds instantly",
+  title: "DevLaunch — AI Project Scaffold Generator",
+  description: "Stop wasting hours on setup. Start building instantly.",
 };
 
 export default function RootLayout({
