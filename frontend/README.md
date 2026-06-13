@@ -66,53 +66,19 @@ A **Claude AI-generated scaffold** that understands your exact stack combination
 
 ## 🔄 How It Works
 
-┌─────────────────────────────────────────────────────────────┐
-│                      USER FLOW                               │
-└─────────────────────────────────────────────────────────────┘
+## 🔄 How It Works
 
-USER INPUT
-┌──────────────────────────────────┐
-│  "Next.js + FastAPI + PostgreSQL" │
-└──────────────┬───────────────────┘
-│
-▼
-VALIDATION LAYER
-┌──────────────────────────────────┐
-│  Check if valid tech stack        │
-│  Known frameworks database        │
-└──────────────┬───────────────────┘
-│
-▼
-FASTAPI BACKEND (Render)
-┌──────────────────────────────────┐
-│  POST /generate                   │
-│  Structured prompt engineering    │
-└──────────────┬───────────────────┘
-│
-▼
-CLAUDE AI (Anthropic)
-┌──────────────────────────────────┐
-│  claude-opus-4-6                  │
-│  4096 max tokens                  │
-│  Production-grade generation      │
-└──────────────┬───────────────────┘
-│
-▼
-RESPONSE PARSING
-┌──────────────────────────────────┐
-│  Extract individual files         │
-│  Parse folder structure           │
-│  Build file tree                  │
-└──────────────┬───────────────────┘
-│
-▼
-NEXT.JS FRONTEND (Vercel)
-┌──────────────────────────────────┐
-│  Interactive file tree            │
-│  Syntax highlighted code view     │
-│  AI explanation per file          │
-│  Download ZIP / Push to GitHub    │
-└──────────────────────────────────┘
+**1. User Input** → Type your tech stack (e.g. "Next.js + FastAPI + PostgreSQL")
+
+**2. Validation** → Smart detection confirms it's a real tech stack
+
+**3. FastAPI Backend** → Sends structured prompt to Claude API via POST /generate
+
+**4. Claude AI** → Generates complete production-ready scaffold (claude-opus-4-6, 4096 tokens)
+
+**5. Response Parsing** → Extracts individual files from markdown response
+
+**6. Next.js Frontend** → Displays interactive file tree, code view, AI explanations, ZIP download, GitHub push
 ---
 
 ## 🛠️ Tech Stack
@@ -137,35 +103,19 @@ NEXT.JS FRONTEND (Vercel)
 ---
 
 ## 📁 Project Structure
-devlaunch/
-├── frontend/                 # Next.js 14 App
-│   ├── app/
-│   │   ├── page.tsx          # Main UI — hero, generator, results
-│   │   ├── layout.tsx        # Root layout
-│   │   └── globals.css       # Aurora animations, particles
-│   ├── package.json
-│   └── next.config.ts
-│
-├── backend/                  # FastAPI Python Backend
-│   ├── main.py               # All 4 API endpoints
-│   ├── requirements.txt      # Python dependencies
-│   └── .env                  # ANTHROPIC_API_KEY
-│
-└── README.md
----
+## 🔄 How It Works
 
-## 🔌 API Endpoints
+**1. User Input** → Type your tech stack (e.g. "Next.js + FastAPI + PostgreSQL")
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/` | Health check |
-| `POST` | `/generate` | Generate scaffold + file tree |
-| `POST` | `/download` | Generate + return as ZIP file |
-| `POST` | `/explain` | AI explanation for any file |
-| `POST` | `/create-repo` | Create GitHub repo + push files |
+**2. Validation** → Smart detection confirms it's a real tech stack
 
----
+**3. FastAPI Backend** → Sends structured prompt to Claude API via POST /generate
 
+**4. Claude AI** → Generates complete production-ready scaffold (claude-opus-4-6, 4096 tokens)
+
+**5. Response Parsing** → Extracts individual files from markdown response
+
+**6. Next.js Frontend** → Displays interactive file tree, code view, AI explanations, ZIP download, GitHub push
 ## ⚡ Quick Start
 
 ### Prerequisites
