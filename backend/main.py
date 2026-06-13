@@ -234,14 +234,26 @@ Filename: {request.filename}
 Content:
 {request.content}
 
-Explain in simple, practical terms:
-1. What this file does and why it exists in the project
-2. The most important parts they should understand
-3. What they should modify first when they start building
-4. Any gotchas or common mistakes with this file
+Give a clean, structured explanation using this exact format:
 
-Keep it concise and practical. Talk like a senior developer explaining to a junior.
-"""
+WHAT THIS FILE DOES
+Write 2-3 sentences in plain English. No jargon.
+
+WHY IT EXISTS
+Write 1-2 sentences explaining its role in the project.
+
+KEY PARTS TO UNDERSTAND
+- Point 1
+- Point 2  
+- Point 3
+
+WHAT TO MODIFY FIRST
+Write exactly what line or section to change when they start building.
+
+COMMON MISTAKES
+One or two things developers commonly get wrong with this file.
+
+Keep everything concise, practical, and beginner-friendly."""
 
     try:
         message = client.messages.create(
