@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 
 type FileMap = { [filename: string]: string }
@@ -12,9 +12,12 @@ const EXAMPLES = [
   "Next.js + Supabase",
   "FastAPI + Redis + Docker",
   "Vue.js + Django + MySQL",
+  "React + Express + PostgreSQL",
+  "Next.js + Prisma + PostgreSQL",
+  "FastAPI + SQLAlchemy + Redis",
 ]
 
-const KNOWN_TECHS = ['next', 'react', 'vue', 'angular', 'fastapi', 'django', 'flask', 'node', 'express', 'postgres', 'mysql', 'mongodb', 'redis', 'docker', 'supabase', 'firebase', 'tailwind', 'typescript', 'python', 'javascript', 'graphql', 'prisma', 'trpc']
+const KNOWN_TECHS = ['next', 'react', 'vue', 'angular', 'fastapi', 'django', 'flask', 'node', 'express', 'postgres', 'mysql', 'mongodb', 'redis', 'docker', 'supabase', 'firebase', 'tailwind', 'typescript', 'python', 'javascript', 'graphql', 'prisma', 'trpc', 'svelte', 'nuxt', 'laravel', 'rails', 'spring', 'kotlin', 'golang', 'rust', 'sqlite', 'cassandra', 'elasticsearch']
 
 function Particles() {
   const [mounted, setMounted] = useState(false)
@@ -44,7 +47,7 @@ function Particles() {
             position: 'absolute',
             width: p.width,
             height: p.height,
-            background: `rgba(139, 92, 246, ${p.opacity})`,
+            background: `rgba(22, 163, 74, ${p.opacity})`,
             borderRadius: '50%',
             left: p.left,
             animation: `particle-float ${p.duration} linear infinite`,
@@ -216,9 +219,8 @@ export default function Home() {
   }
 
   return (
-    <main style={{ minHeight: '100vh', background: '#050507', color: 'white', fontFamily: 'system-ui, sans-serif', position: 'relative', overflowX: 'hidden' }}>
+    <main style={{ minHeight: '100vh', background: '#0d1117', color: '#e6edf3', fontFamily: 'system-ui, sans-serif', position: 'relative', overflowX: 'hidden' }}>
 
-      {/* AURORA BACKGROUND */}
       <div className="aurora-bg">
         <div className="aurora-blob aurora-blob-1" />
         <div className="aurora-blob aurora-blob-2" />
@@ -233,11 +235,11 @@ export default function Home() {
         animate={{ y: 0, opacity: 1 }}
         style={{
           position: 'relative', zIndex: 10,
-          borderBottom: '1px solid rgba(139,92,246,0.15)',
-          padding: '16px 24px',
+          borderBottom: '1px solid #21262d',
+          padding: '14px 24px',
           display: 'flex', alignItems: 'center',
           justifyContent: 'space-between',
-          background: 'rgba(5,5,7,0.7)',
+          background: 'rgba(13,17,23,0.85)',
           backdropFilter: 'blur(20px)'
         }}
       >
@@ -246,24 +248,24 @@ export default function Home() {
             whileHover={{ rotate: 10, scale: 1.1 }}
             style={{
               width: 34, height: 34,
-              background: 'linear-gradient(135deg, #7c3aed, #4f46e5)',
+              background: 'linear-gradient(135deg, #16a34a, #15803d)',
               borderRadius: 10, display: 'flex',
               alignItems: 'center', justifyContent: 'center',
               fontSize: 16, fontWeight: 800,
-              boxShadow: '0 0 20px rgba(124,58,237,0.5)'
+              boxShadow: '0 0 20px rgba(22,163,74,0.4)'
             }}
           >D</motion.div>
           <span style={{ fontWeight: 700, fontSize: 17, letterSpacing: '-0.02em' }}>DevLaunch</span>
           <span style={{
             fontSize: 10, padding: '2px 8px',
-            background: 'rgba(139,92,246,0.15)',
-            border: '1px solid rgba(139,92,246,0.4)',
-            borderRadius: 20, color: '#a78bfa',
+            background: 'rgba(22,163,74,0.1)',
+            border: '1px solid rgba(22,163,74,0.3)',
+            borderRadius: 20, color: '#4ade80',
             fontWeight: 600, letterSpacing: '0.05em'
           }}>BETA</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <div style={{ fontSize: 12, color: '#52525b' }}>
+          <div style={{ fontSize: 12, color: '#8b949e' }}>
             Escape setup hell. Start building.
           </div>
           <motion.div
@@ -289,7 +291,7 @@ export default function Home() {
               position: 'relative', zIndex: 10,
               display: 'flex', flexDirection: 'column',
               alignItems: 'center', justifyContent: 'center',
-              padding: '80px 24px 60px', minHeight: 'calc(100vh - 70px)'
+              padding: '60px 24px 40px',
             }}
           >
             {/* Badge */}
@@ -297,21 +299,16 @@ export default function Home() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1 }}
-              whileHover={{ scale: 1.05 }}
               style={{
-                background: 'rgba(139,92,246,0.1)',
-                border: '1px solid rgba(139,92,246,0.4)',
-                borderRadius: 20, padding: '6px 18px',
-                fontSize: 13, color: '#a78bfa',
-                marginBottom: 32, cursor: 'default',
-                backdropFilter: 'blur(10px)',
-                display: 'flex', alignItems: 'center', gap: 8
+                background: 'rgba(22,163,74,0.08)',
+                border: '1px solid rgba(22,163,74,0.3)',
+                borderRadius: 20, padding: '5px 16px',
+                fontSize: 12, color: '#4ade80',
+                marginBottom: 24, display: 'flex',
+                alignItems: 'center', gap: 8
               }}
             >
-              <motion.span
-                animate={{ rotate: [0, 20, -20, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >✦</motion.span>
+              <motion.span animate={{ rotate: [0, 20, -20, 0] }} transition={{ duration: 2, repeat: Infinity }}>⚡</motion.span>
               AI-powered project scaffolding — Generate in seconds
             </motion.div>
 
@@ -321,9 +318,9 @@ export default function Home() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
               style={{
-                fontSize: 'clamp(32px, 6vw, 64px)',
+                fontSize: 'clamp(28px, 5vw, 58px)',
                 fontWeight: 800, textAlign: 'center',
-                lineHeight: 1.1, marginBottom: 20,
+                lineHeight: 1.1, marginBottom: 16,
                 letterSpacing: '-0.03em'
               }}
             >
@@ -337,31 +334,29 @@ export default function Home() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
               style={{
-                color: '#71717a', textAlign: 'center',
-                fontSize: 18, maxWidth: 520,
-                marginBottom: 48, lineHeight: 1.7
+                color: '#8b949e', textAlign: 'center',
+                fontSize: 17, maxWidth: 500,
+                marginBottom: 40, lineHeight: 1.7
               }}
             >
               Type your tech stack. Get every file, every config, every folder —
-              <span style={{ color: '#a78bfa' }}> production ready instantly.</span>
+              <span style={{ color: '#4ade80' }}> production ready instantly.</span>
             </motion.p>
 
-            {/* INPUT BOX */}
+            {/* INPUT */}
             <motion.div
               initial={{ y: 20, opacity: 0, scale: 0.95 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
               transition={{ delay: 0.4 }}
-              style={{ width: '100%', maxWidth: 600 }}
+              style={{ width: '100%', maxWidth: 600, marginBottom: 48 }}
             >
               <div
                 className="input-glow"
                 style={{
-                  background: 'rgba(15,15,20,0.8)',
-                  border: `1px solid ${focused ? 'rgba(139,92,246,0.6)' : 'rgba(139,92,246,0.2)'}`,
-                  borderRadius: 20, padding: 8,
-                  backdropFilter: 'blur(20px)',
+                  background: '#161b22',
+                  border: `1px solid ${focused ? 'rgba(22,163,74,0.6)' : '#21262d'}`,
+                  borderRadius: 16, padding: 6,
                   transition: 'all 0.3s',
-                  boxShadow: focused ? '0 0 0 1px rgba(124,58,237,0.3), 0 0 40px rgba(124,58,237,0.15)' : 'none'
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', padding: '8px 12px 4px' }}>
@@ -377,7 +372,7 @@ export default function Home() {
                     style={{
                       flex: 1, background: 'transparent',
                       border: 'none', outline: 'none',
-                      fontSize: 16, color: 'white',
+                      fontSize: 16, color: '#e6edf3',
                       fontWeight: 500
                     }}
                   />
@@ -388,8 +383,7 @@ export default function Home() {
                       onClick={() => setStack("")}
                       style={{
                         background: 'none', border: 'none',
-                        color: '#52525b', cursor: 'pointer',
-                        fontSize: 18, padding: '0 4px'
+                        color: '#8b949e', cursor: 'pointer', fontSize: 18
                       }}
                     >×</motion.button>
                   )}
@@ -403,40 +397,35 @@ export default function Home() {
                   style={{
                     width: '100%', marginTop: 6,
                     background: stack.trim()
-                      ? 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 50%, #7c3aed 100%)'
-                      : '#1c1c1f',
-                    backgroundSize: '200% auto',
-                    border: 'none', borderRadius: 14,
-                    padding: '16px 20px', fontSize: 16,
-                    fontWeight: 700, color: stack.trim() ? 'white' : '#3f3f46',
+                      ? 'linear-gradient(135deg, #16a34a, #15803d)'
+                      : '#21262d',
+                    border: 'none', borderRadius: 12,
+                    padding: '14px 20px', fontSize: 15,
+                    fontWeight: 700,
+                    color: stack.trim() ? 'white' : '#8b949e',
                     cursor: stack.trim() ? 'pointer' : 'not-allowed',
                     transition: 'all 0.3s',
-                    letterSpacing: '0.02em'
+                    boxSizing: 'border-box'
                   }}
                 >
                   {stack.trim() ? '⚡ Generate Scaffold →' : 'Type your stack above...'}
                 </motion.button>
               </div>
 
-              {/* EXAMPLE PILLS */}
-              <div style={{
-                display: 'flex', flexWrap: 'wrap',
-                gap: 8, marginTop: 16, justifyContent: 'center'
-              }}>
-                <span style={{ fontSize: 12, color: '#3f3f46', alignSelf: 'center' }}>Try:</span>
-                {EXAMPLES.map((ex) => (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 14, justifyContent: 'center' }}>
+                <span style={{ fontSize: 12, color: '#8b949e', alignSelf: 'center' }}>Try:</span>
+                {EXAMPLES.slice(0, 5).map((ex) => (
                   <motion.button
                     key={ex}
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setStack(ex)}
                     style={{
-                      background: 'rgba(255,255,255,0.03)',
-                      border: '1px solid rgba(139,92,246,0.2)',
+                      background: '#161b22',
+                      border: '1px solid #21262d',
                       borderRadius: 20, padding: '5px 14px',
-                      fontSize: 12, color: '#71717a',
+                      fontSize: 12, color: '#8b949e',
                       cursor: 'pointer', transition: 'all 0.2s',
-                      backdropFilter: 'blur(10px)'
                     }}
                   >
                     {ex}
@@ -445,49 +434,70 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* FEATURE CARDS */}
+            {/* BENTO GRID */}
             <motion.div
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.6 }}
+              transition={{ delay: 0.5 }}
               style={{
+                width: '100%', maxWidth: 900,
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-                gap: 12, marginTop: 64,
-                width: '100%', maxWidth: 700
+                gridTemplateColumns: 'repeat(4, 1fr)',
+                gridTemplateRows: 'auto auto',
+                gap: 12,
               }}
             >
+              {/* BIG CARD */}
+              <motion.div
+                whileHover={{ y: -4, borderColor: 'rgba(22,163,74,0.4)' }}
+                className="bento-card"
+                style={{
+                  gridColumn: 'span 2',
+                  gridRow: 'span 2',
+                  display: 'flex', flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  minHeight: 200
+                }}
+              >
+                <div>
+                  <div style={{ fontSize: 32, marginBottom: 12 }}>⚡</div>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: '#e6edf3', marginBottom: 8 }}>
+                    Instant Scaffold Generation
+                  </div>
+                  <div style={{ fontSize: 13, color: '#8b949e', lineHeight: 1.6 }}>
+                    Type any tech stack combination. Claude AI generates a complete, production-ready project scaffold in under 20 seconds. Every file. Every config. Ready to build.
+                  </div>
+                </div>
+                <div style={{
+                  marginTop: 16, fontSize: 12,
+                  color: '#4ade80',
+                  background: 'rgba(22,163,74,0.08)',
+                  border: '1px solid rgba(22,163,74,0.2)',
+                  borderRadius: 8, padding: '6px 12px',
+                  display: 'inline-block'
+                }}>
+                  Powered by Claude Opus ✦
+                </div>
+              </motion.div>
+
+              {/* SMALL CARDS */}
               {[
-                { icon: '⚡', title: 'Instant', desc: 'Full scaffold in 15 seconds', color: '#fbbf24' },
-                { icon: '📁', title: 'File Tree', desc: 'Browse every file generated', color: '#34d399' },
-                { icon: '🤖', title: 'AI Explain', desc: 'Understand any file instantly', color: '#a78bfa' },
-                { icon: '🚀', title: 'Push to GitHub', desc: 'One click repo creation', color: '#60a5fa' },
+                { icon: '📁', title: 'File Tree View', desc: 'Browse every generated file interactively' },
+                { icon: '🤖', title: 'AI Explanations', desc: 'Click any file — Claude explains it instantly' },
+                { icon: '⬇️', title: 'Download ZIP', desc: 'Get actual files on your machine' },
+                { icon: '🚀', title: 'Push to GitHub', desc: 'Auto-create repo with all files pushed' },
               ].map((f, i) => (
                 <motion.div
                   key={f.title}
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.7 + i * 0.1 }}
-                  className="card-hover"
-                  style={{
-                    background: 'rgba(255,255,255,0.02)',
-                    border: '1px solid rgba(255,255,255,0.05)',
-                    borderRadius: 16, padding: '20px 16px',
-                    textAlign: 'center', cursor: 'default',
-                    transition: 'all 0.3s',
-                    backdropFilter: 'blur(10px)'
-                  }}
+                  transition={{ delay: 0.6 + i * 0.1 }}
+                  whileHover={{ y: -4, borderColor: 'rgba(22,163,74,0.4)' }}
+                  className="bento-card"
                 >
-                  <div style={{
-                    fontSize: 28, marginBottom: 10,
-                    filter: `drop-shadow(0 0 8px ${f.color}88)`
-                  }}>{f.icon}</div>
-                  <div style={{
-                    fontSize: 13, fontWeight: 700,
-                    color: '#e4e4e7', marginBottom: 6,
-                    letterSpacing: '-0.01em'
-                  }}>{f.title}</div>
-                  <div style={{ fontSize: 12, color: '#52525b', lineHeight: 1.4 }}>{f.desc}</div>
+                  <div style={{ fontSize: 22, marginBottom: 8 }}>{f.icon}</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#e6edf3', marginBottom: 4 }}>{f.title}</div>
+                  <div style={{ fontSize: 12, color: '#8b949e', lineHeight: 1.5 }}>{f.desc}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -496,23 +506,23 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1 }}
+              transition={{ delay: 0.9 }}
               style={{
-                display: 'flex', gap: 32, marginTop: 48,
-                padding: '16px 32px',
-                background: 'rgba(255,255,255,0.02)',
-                border: '1px solid rgba(255,255,255,0.05)',
-                borderRadius: 12, backdropFilter: 'blur(10px)'
+                display: 'flex', gap: 32, marginTop: 32,
+                padding: '14px 32px',
+                background: '#161b22',
+                border: '1px solid #21262d',
+                borderRadius: 12,
               }}
             >
               {[
-                { num: '10+', label: 'Frameworks' },
+                { num: '20+', label: 'Frameworks supported' },
                 { num: '< 20s', label: 'Generation time' },
-                { num: '100%', label: 'Production ready' },
+                { num: '4', label: 'Power features' },
               ].map((s) => (
                 <div key={s.label} style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: 20, fontWeight: 800, color: '#a78bfa' }}>{s.num}</div>
-                  <div style={{ fontSize: 11, color: '#52525b', marginTop: 2 }}>{s.label}</div>
+                  <div style={{ fontSize: 20, fontWeight: 800, color: '#4ade80' }}>{s.num}</div>
+                  <div style={{ fontSize: 11, color: '#8b949e', marginTop: 2 }}>{s.label}</div>
                 </div>
               ))}
             </motion.div>
@@ -531,7 +541,7 @@ export default function Home() {
               position: 'relative', zIndex: 10,
               display: 'flex', flexDirection: 'column',
               alignItems: 'center', justifyContent: 'center',
-              minHeight: 'calc(100vh - 70px)', padding: '24px'
+              minHeight: 'calc(100vh - 67px)', padding: '24px'
             }}
           >
             <div style={{ position: 'relative', marginBottom: 32 }}>
@@ -540,9 +550,9 @@ export default function Home() {
                 transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                 style={{
                   width: 64, height: 64,
-                  border: '2px solid rgba(139,92,246,0.2)',
-                  borderTopColor: '#7c3aed',
-                  borderRightColor: '#4f46e5',
+                  border: '2px solid rgba(22,163,74,0.2)',
+                  borderTopColor: '#16a34a',
+                  borderRightColor: '#4ade80',
                   borderRadius: '50%'
                 }}
               />
@@ -555,24 +565,17 @@ export default function Home() {
             <motion.div
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 2, repeat: Infinity }}
-              style={{
-                fontSize: 22, fontWeight: 700,
-                marginBottom: 8, letterSpacing: '-0.02em'
-              }}
+              style={{ fontSize: 22, fontWeight: 700, marginBottom: 8, letterSpacing: '-0.02em' }}
             >
               Building your scaffold...
             </motion.div>
-            <div style={{ color: '#52525b', fontSize: 14, marginBottom: 4 }}>
+            <div style={{ color: '#8b949e', fontSize: 14, marginBottom: 4 }}>
               Claude is generating your complete project
             </div>
-            <div style={{ color: '#3f3f46', fontSize: 12 }}>
+            <div style={{ color: '#8b949e', fontSize: 12, marginBottom: 24 }}>
               This takes about 15-20 seconds
             </div>
-            <motion.div
-              style={{
-                marginTop: 32, display: 'flex', gap: 8
-              }}
-            >
+            <div style={{ display: 'flex', gap: 8 }}>
               {['Analyzing stack', 'Generating files', 'Writing configs', 'Finalizing'].map((step, i) => (
                 <motion.div
                   key={step}
@@ -580,16 +583,16 @@ export default function Home() {
                   animate={{ opacity: [0.3, 1, 0.3] }}
                   transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
                   style={{
-                    fontSize: 11, color: '#a78bfa',
-                    background: 'rgba(139,92,246,0.1)',
-                    border: '1px solid rgba(139,92,246,0.2)',
+                    fontSize: 11, color: '#4ade80',
+                    background: 'rgba(22,163,74,0.08)',
+                    border: '1px solid rgba(22,163,74,0.2)',
                     borderRadius: 20, padding: '4px 12px'
                   }}
                 >
                   {step}
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -613,13 +616,11 @@ export default function Home() {
               color: '#f87171', fontSize: 14,
               display: 'flex', alignItems: 'center',
               justifyContent: 'space-between',
-              backdropFilter: 'blur(10px)'
             }}>
               <span>⚠️ {error}</span>
               <button onClick={() => setError("")} style={{
                 color: '#f87171', background: 'none',
-                border: 'none', cursor: 'pointer',
-                fontSize: 18, marginLeft: 12
+                border: 'none', cursor: 'pointer', fontSize: 18, marginLeft: 12
               }}>×</button>
             </div>
           </motion.div>
@@ -640,11 +641,11 @@ export default function Home() {
           >
             {/* TOP BAR */}
             <div style={{
-              borderBottom: '1px solid rgba(139,92,246,0.1)',
+              borderBottom: '1px solid #21262d',
               padding: '10px 20px',
               display: 'flex', alignItems: 'center',
               justifyContent: 'space-between',
-              background: 'rgba(5,5,7,0.9)',
+              background: 'rgba(13,17,23,0.95)',
               backdropFilter: 'blur(20px)'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -652,20 +653,18 @@ export default function Home() {
                   whileHover={{ x: -3 }}
                   onClick={() => { setScaffold(""); setFiles({}); setStack(""); setError("") }}
                   style={{
-                    color: '#52525b', background: 'none',
-                    border: 'none', cursor: 'pointer', fontSize: 13,
-                    display: 'flex', alignItems: 'center', gap: 4
+                    color: '#8b949e', background: 'none',
+                    border: 'none', cursor: 'pointer', fontSize: 13
                   }}
                 >
                   ← New scaffold
                 </motion.button>
-                <span style={{ color: '#27272a' }}>|</span>
+                <span style={{ color: '#21262d' }}>|</span>
                 <span style={{
-                  fontSize: 12, color: '#a78bfa',
-                  background: 'rgba(139,92,246,0.1)',
-                  border: '1px solid rgba(139,92,246,0.2)',
-                  borderRadius: 6, padding: '3px 10px',
-                  fontWeight: 500
+                  fontSize: 12, color: '#4ade80',
+                  background: 'rgba(22,163,74,0.08)',
+                  border: '1px solid rgba(22,163,74,0.2)',
+                  borderRadius: 6, padding: '3px 10px', fontWeight: 500
                 }}>⚡ {stack}</span>
               </div>
               <div style={{ display: 'flex', gap: 8 }}>
@@ -675,12 +674,11 @@ export default function Home() {
                   onClick={handleDownload}
                   disabled={downloading}
                   style={{
-                    background: 'rgba(255,255,255,0.04)',
-                    border: '1px solid rgba(255,255,255,0.08)',
+                    background: '#161b22',
+                    border: '1px solid #21262d',
                     borderRadius: 8, padding: '7px 14px',
-                    fontSize: 13, color: '#a1a1aa',
-                    cursor: 'pointer', transition: 'all 0.2s',
-                    backdropFilter: 'blur(10px)'
+                    fontSize: 13, color: '#8b949e',
+                    cursor: 'pointer', transition: 'all 0.2s'
                   }}
                 >
                   {downloading ? "⏳ Downloading..." : "⬇ Download ZIP"}
@@ -691,11 +689,10 @@ export default function Home() {
                   onClick={() => setShowRepoModal(true)}
                   className="glow-button"
                   style={{
-                    background: 'linear-gradient(135deg, #7c3aed, #4f46e5)',
+                    background: 'linear-gradient(135deg, #16a34a, #15803d)',
                     border: 'none', borderRadius: 8,
                     padding: '7px 16px', fontSize: 13,
-                    fontWeight: 700, color: 'white',
-                    cursor: 'pointer', letterSpacing: '0.02em'
+                    fontWeight: 700, color: 'white', cursor: 'pointer'
                   }}
                 >
                   🚀 Push to GitHub
@@ -711,14 +708,14 @@ export default function Home() {
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   style={{
-                    background: 'rgba(34,197,94,0.06)',
-                    borderBottom: '1px solid rgba(34,197,94,0.15)',
+                    background: 'rgba(22,163,74,0.06)',
+                    borderBottom: '1px solid rgba(22,163,74,0.15)',
                     padding: '10px 20px',
                     display: 'flex', alignItems: 'center',
                     justifyContent: 'space-between', fontSize: 13
                   }}
                 >
-                  <span style={{ color: '#86efac' }}>✓ Repository created successfully!</span>
+                  <span style={{ color: '#4ade80' }}>✓ Repository created successfully!</span>
                   <a href={repoUrl} target="_blank" rel="noopener noreferrer"
                     style={{ color: '#4ade80', textDecoration: 'underline' }}>
                     View on GitHub →
@@ -736,17 +733,16 @@ export default function Home() {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.1 }}
                 style={{
-                  width: 230, borderRight: '1px solid rgba(139,92,246,0.1)',
+                  width: 230,
+                  borderRight: '1px solid #21262d',
                   overflowY: 'auto', paddingTop: 16,
-                  background: 'rgba(5,5,7,0.6)',
-                  backdropFilter: 'blur(20px)', flexShrink: 0
+                  background: '#0d1117', flexShrink: 0
                 }}
               >
                 <div style={{
                   padding: '0 16px 10px',
-                  fontSize: 10, color: '#3f3f46',
-                  textTransform: 'uppercase', letterSpacing: '0.12em',
-                  fontWeight: 600
+                  fontSize: 10, color: '#8b949e',
+                  textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 600
                 }}>
                   📁 Files ({Object.keys(files).length})
                 </div>
@@ -761,14 +757,13 @@ export default function Home() {
                     style={{
                       width: '100%', textAlign: 'left',
                       padding: '9px 16px', fontSize: 12,
-                      background: selectedFile === filename
-                        ? 'rgba(139,92,246,0.12)' : 'transparent',
-                      borderLeft: selectedFile === filename
-                        ? '2px solid #7c3aed' : '2px solid transparent',
+                      background: selectedFile === filename ? 'rgba(22,163,74,0.08)' : 'transparent',
+                      borderLeft: selectedFile === filename ? '2px solid #16a34a' : '2px solid transparent',
                       borderTop: 'none', borderRight: 'none', borderBottom: 'none',
-                      color: selectedFile === filename ? '#c4b5fd' : '#71717a',
+                      color: selectedFile === filename ? '#4ade80' : '#8b949e',
                       cursor: 'pointer', transition: 'all 0.15s',
-                      fontFamily: 'monospace', fontWeight: selectedFile === filename ? 600 : 400
+                      fontFamily: 'monospace',
+                      fontWeight: selectedFile === filename ? 600 : 400
                     }}
                   >
                     {filename}
@@ -786,17 +781,13 @@ export default function Home() {
                     style={{ display: 'flex', flexDirection: 'column', height: '100%' }}
                   >
                     <div style={{
-                      borderBottom: '1px solid rgba(139,92,246,0.08)',
+                      borderBottom: '1px solid #21262d',
                       padding: '10px 20px',
                       display: 'flex', alignItems: 'center',
                       justifyContent: 'space-between',
-                      background: 'rgba(5,5,7,0.8)',
-                      backdropFilter: 'blur(10px)', flexShrink: 0
+                      background: '#0d1117', flexShrink: 0
                     }}>
-                      <span style={{
-                        fontSize: 13, color: '#a1a1aa',
-                        fontFamily: 'monospace', fontWeight: 500
-                      }}>
+                      <span style={{ fontSize: 13, color: '#8b949e', fontFamily: 'monospace', fontWeight: 500 }}>
                         📄 {selectedFile}
                       </span>
                       <div style={{ display: 'flex', gap: 8 }}>
@@ -805,10 +796,10 @@ export default function Home() {
                           whileTap={{ scale: 0.95 }}
                           onClick={() => handleCopy(files[selectedFile])}
                           style={{
-                            background: copied ? 'rgba(34,197,94,0.1)' : 'rgba(255,255,255,0.04)',
-                            border: `1px solid ${copied ? 'rgba(34,197,94,0.3)' : 'rgba(255,255,255,0.08)'}`,
+                            background: copied ? 'rgba(22,163,74,0.1)' : '#161b22',
+                            border: `1px solid ${copied ? 'rgba(22,163,74,0.3)' : '#21262d'}`,
                             borderRadius: 6, padding: '5px 12px',
-                            fontSize: 12, color: copied ? '#4ade80' : '#71717a',
+                            fontSize: 12, color: copied ? '#4ade80' : '#8b949e',
                             cursor: 'pointer', transition: 'all 0.2s'
                           }}
                         >
@@ -819,12 +810,11 @@ export default function Home() {
                           whileTap={{ scale: 0.95 }}
                           onClick={() => handleExplain(selectedFile, files[selectedFile])}
                           style={{
-                            background: 'rgba(139,92,246,0.08)',
-                            border: '1px solid rgba(139,92,246,0.25)',
+                            background: 'rgba(22,163,74,0.06)',
+                            border: '1px solid rgba(22,163,74,0.2)',
                             borderRadius: 6, padding: '5px 12px',
-                            fontSize: 12, color: '#a78bfa',
-                            cursor: 'pointer', transition: 'all 0.2s',
-                            fontWeight: 500
+                            fontSize: 12, color: '#4ade80',
+                            cursor: 'pointer', transition: 'all 0.2s', fontWeight: 500
                           }}
                         >
                           {explaining ? '⏳ Explaining...' : '✨ Explain this file'}
@@ -839,28 +829,23 @@ export default function Home() {
                           animate={{ height: 'auto', opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           style={{
-                            background: 'rgba(139,92,246,0.04)',
-                            borderBottom: '1px solid rgba(139,92,246,0.12)',
-                            padding: '16px 20px', flexShrink: 0,
-                            backdropFilter: 'blur(10px)'
+                            background: 'rgba(22,163,74,0.04)',
+                            borderBottom: '1px solid rgba(22,163,74,0.1)',
+                            padding: '16px 20px', flexShrink: 0
                           }}
                         >
                           <div style={{
-                            fontSize: 10, color: '#7c3aed',
-                            fontWeight: 700, marginBottom: 12,
-                            textTransform: 'uppercase', letterSpacing: '0.1em',
-                            display: 'flex', alignItems: 'center', gap: 6
+                            fontSize: 10, color: '#16a34a',
+                            fontWeight: 700, marginBottom: 10,
+                            textTransform: 'uppercase', letterSpacing: '0.1em'
                           }}>
-                            <motion.span
-                              animate={{ rotate: [0, 360] }}
-                              transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-                            >✨</motion.span>
-                            AI Explanation
+                            ✨ AI Explanation
                           </div>
                           <pre style={{
-                            fontSize: 13, color: '#c4b5fd',
+                            fontSize: 13, color: '#4ade80',
                             lineHeight: 1.8, whiteSpace: 'pre-wrap',
-                            fontFamily: 'system-ui, sans-serif', margin: 0
+                            fontFamily: 'system-ui, sans-serif', margin: 0,
+                            opacity: 0.9
                           }}>
                             {explanation}
                           </pre>
@@ -870,8 +855,8 @@ export default function Home() {
 
                     <pre style={{
                       flex: 1, padding: 24,
-                      fontSize: 13, color: '#94a3b8',
-                      fontFamily: '"Fira Code", "Cascadia Code", monospace',
+                      fontSize: 13, color: '#8b949e',
+                      fontFamily: '"Fira Code", monospace',
                       overflowX: 'auto', whiteSpace: 'pre-wrap',
                       lineHeight: 1.7, background: 'transparent', margin: 0
                     }}>
@@ -905,65 +890,52 @@ export default function Home() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 30 }}
               style={{
-                background: 'rgba(10,10,15,0.95)',
-                border: '1px solid rgba(139,92,246,0.2)',
+                background: '#161b22',
+                border: '1px solid #21262d',
                 borderRadius: 20, padding: 28,
                 width: '100%', maxWidth: 460,
-                backdropFilter: 'blur(20px)',
-                boxShadow: '0 25px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(139,92,246,0.1)'
+                boxShadow: '0 25px 50px rgba(0,0,0,0.5)'
               }}
             >
-              <div style={{
-                fontSize: 20, fontWeight: 700,
-                marginBottom: 4, letterSpacing: '-0.02em'
-              }}>
+              <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 4, letterSpacing: '-0.02em' }}>
                 🚀 Push to GitHub
               </div>
-              <div style={{ fontSize: 13, color: '#52525b', marginBottom: 24, lineHeight: 1.5 }}>
+              <div style={{ fontSize: 13, color: '#8b949e', marginBottom: 24, lineHeight: 1.5 }}>
                 Create a new repository with all scaffold files pushed automatically.
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                 <div>
                   <label style={{
-                    fontSize: 11, color: '#52525b',
-                    display: 'block', marginBottom: 8,
-                    textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 600
-                  }}>
-                    Repository Name
-                  </label>
+                    fontSize: 11, color: '#8b949e', display: 'block',
+                    marginBottom: 8, textTransform: 'uppercase',
+                    letterSpacing: '0.08em', fontWeight: 600
+                  }}>Repository Name</label>
                   <input
                     type="text"
                     value={repoName}
                     onChange={(e) => setRepoName(e.target.value)}
                     placeholder="my-awesome-project"
                     style={{
-                      width: '100%',
-                      background: 'rgba(255,255,255,0.03)',
-                      border: '1px solid rgba(255,255,255,0.08)',
-                      borderRadius: 10, padding: '12px 16px',
-                      color: 'white', fontSize: 14, outline: 'none',
-                      boxSizing: 'border-box', transition: 'border 0.2s'
+                      width: '100%', background: '#0d1117',
+                      border: '1px solid #21262d', borderRadius: 10,
+                      padding: '12px 16px', color: '#e6edf3',
+                      fontSize: 14, outline: 'none', boxSizing: 'border-box'
                     }}
                   />
                 </div>
 
                 <div>
-                  <div style={{
-                    display: 'flex', justifyContent: 'space-between',
-                    alignItems: 'center', marginBottom: 8
-                  }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                     <label style={{
-                      fontSize: 11, color: '#52525b',
+                      fontSize: 11, color: '#8b949e',
                       textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 600
-                    }}>
-                      GitHub Token
-                    </label>
+                    }}>GitHub Token</label>
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       onClick={() => setShowTokenGuide(!showTokenGuide)}
                       style={{
-                        fontSize: 11, color: '#7c3aed',
+                        fontSize: 11, color: '#4ade80',
                         background: 'none', border: 'none',
                         cursor: 'pointer', fontWeight: 600
                       }}
@@ -979,23 +951,22 @@ export default function Home() {
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         style={{
-                          background: 'rgba(139,92,246,0.05)',
-                          border: '1px solid rgba(139,92,246,0.15)',
+                          background: 'rgba(22,163,74,0.04)',
+                          border: '1px solid rgba(22,163,74,0.15)',
                           borderRadius: 10, padding: '14px 16px',
                           marginBottom: 10, fontSize: 12,
-                          color: '#a1a1aa', lineHeight: 2,
-                          overflow: 'hidden'
+                          color: '#8b949e', lineHeight: 2, overflow: 'hidden'
                         }}
                       >
-                        <div style={{ fontWeight: 700, color: '#a78bfa', marginBottom: 6, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Step by step:</div>
-                        <div>1. Go to <a href="https://github.com/settings/tokens" target="_blank" rel="noopener noreferrer" style={{ color: '#7c3aed', fontWeight: 600 }}>github.com/settings/tokens</a></div>
-                        <div>2. Click <strong style={{ color: '#e4e4e7' }}>"Generate new token (classic)"</strong></div>
-                        <div>3. Add note: <strong style={{ color: '#e4e4e7' }}>"DevLaunch"</strong></div>
-                        <div>4. Expiration: <strong style={{ color: '#e4e4e7' }}>90 days</strong></div>
-                        <div>5. Check <strong style={{ color: '#e4e4e7' }}>"repo"</strong> scope only</div>
-                        <div>6. Click <strong style={{ color: '#e4e4e7' }}>"Generate token"</strong></div>
-                        <div>7. Copy token starting with <strong style={{ color: '#e4e4e7' }}>ghp_</strong></div>
-                        <div style={{ marginTop: 8, color: '#3f3f46', fontSize: 11 }}>🔒 We never store your token.</div>
+                        <div style={{ fontWeight: 700, color: '#4ade80', marginBottom: 6 }}>Step by step:</div>
+                        <div>1. Go to <a href="https://github.com/settings/tokens" target="_blank" rel="noopener noreferrer" style={{ color: '#4ade80' }}>github.com/settings/tokens</a></div>
+                        <div>2. Click <strong style={{ color: '#e6edf3' }}>"Generate new token (classic)"</strong></div>
+                        <div>3. Add note: <strong style={{ color: '#e6edf3' }}>"DevLaunch"</strong></div>
+                        <div>4. Expiration: <strong style={{ color: '#e6edf3' }}>90 days</strong></div>
+                        <div>5. Check <strong style={{ color: '#e6edf3' }}>"repo"</strong> scope only</div>
+                        <div>6. Click <strong style={{ color: '#e6edf3' }}>"Generate token"</strong></div>
+                        <div>7. Copy token starting with <strong style={{ color: '#e6edf3' }}>ghp_</strong></div>
+                        <div style={{ marginTop: 8, color: '#8b949e', fontSize: 11 }}>🔒 We never store your token.</div>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -1006,12 +977,10 @@ export default function Home() {
                     onChange={(e) => setGithubToken(e.target.value)}
                     placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
                     style={{
-                      width: '100%',
-                      background: 'rgba(255,255,255,0.03)',
-                      border: '1px solid rgba(255,255,255,0.08)',
-                      borderRadius: 10, padding: '12px 16px',
-                      color: 'white', fontSize: 14, outline: 'none',
-                      boxSizing: 'border-box'
+                      width: '100%', background: '#0d1117',
+                      border: '1px solid #21262d', borderRadius: 10,
+                      padding: '12px 16px', color: '#e6edf3',
+                      fontSize: 14, outline: 'none', boxSizing: 'border-box'
                     }}
                   />
                 </div>
@@ -1023,15 +992,12 @@ export default function Home() {
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setShowRepoModal(false)}
                   style={{
-                    flex: 1,
-                    background: 'rgba(255,255,255,0.04)',
-                    border: '1px solid rgba(255,255,255,0.08)',
-                    borderRadius: 10, padding: 13,
-                    fontSize: 13, color: '#71717a', cursor: 'pointer'
+                    flex: 1, background: '#21262d',
+                    border: '1px solid #21262d', borderRadius: 10,
+                    padding: 13, fontSize: 13,
+                    color: '#8b949e', cursor: 'pointer'
                   }}
-                >
-                  Cancel
-                </motion.button>
+                >Cancel</motion.button>
                 <motion.button
                   whileHover={{ scale: creatingRepo || !githubToken || !repoName ? 1 : 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -1040,13 +1006,14 @@ export default function Home() {
                   style={{
                     flex: 2,
                     background: creatingRepo || !githubToken || !repoName
-                      ? 'rgba(255,255,255,0.04)'
-                      : 'linear-gradient(135deg, #7c3aed, #4f46e5)',
+                      ? '#21262d'
+                      : 'linear-gradient(135deg, #16a34a, #15803d)',
                     border: 'none', borderRadius: 10,
                     padding: 13, fontSize: 13,
-                    fontWeight: 700, color: creatingRepo || !githubToken || !repoName ? '#3f3f46' : 'white',
+                    fontWeight: 700,
+                    color: creatingRepo || !githubToken || !repoName ? '#8b949e' : 'white',
                     cursor: creatingRepo || !githubToken || !repoName ? 'not-allowed' : 'pointer',
-                    boxShadow: creatingRepo || !githubToken || !repoName ? 'none' : '0 0 20px rgba(124,58,237,0.4)'
+                    boxShadow: creatingRepo || !githubToken || !repoName ? 'none' : '0 0 20px rgba(22,163,74,0.3)'
                   }}
                 >
                   {creatingRepo ? "⏳ Creating..." : "🚀 Create & Push to GitHub"}
