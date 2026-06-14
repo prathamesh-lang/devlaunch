@@ -265,8 +265,18 @@ export default function Home() {
           }}>BETA</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <div style={{ fontSize: 12, color: '#8b949e' }}>
-            Escape setup hell. Start building.
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <a
+              href="https://github.com/prathamesh-lang/devlaunch"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontSize: 12, color: '#4ade80', textDecoration: 'none' }}
+            >
+              ⭐ Star on GitHub
+            </a>
+            <div style={{ fontSize: 12, color: '#8b949e' }}>
+              Escape setup hell. Start building.
+            </div>
           </div>
           <motion.div
             animate={{ scale: [1, 1.2, 1] }}
@@ -318,10 +328,10 @@ export default function Home() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
               style={{
-                fontSize: 'clamp(28px, 5vw, 58px)',
+                fontSize: 'clamp(36px, 6vw, 72px)',
                 fontWeight: 800, textAlign: 'center',
-                lineHeight: 1.1, marginBottom: 16,
-                letterSpacing: '-0.03em'
+                lineHeight: 1.05, marginBottom: 16,
+                letterSpacing: '-0.04em'
               }}
             >
               Stop wasting hours
@@ -400,7 +410,7 @@ export default function Home() {
                       ? 'linear-gradient(135deg, #16a34a, #15803d)'
                       : '#21262d',
                     border: 'none', borderRadius: 12,
-                    padding: '14px 20px', fontSize: 15,
+                    padding: '16px 20px', fontSize: 16,
                     fontWeight: 700,
                     color: stack.trim() ? 'white' : '#8b949e',
                     cursor: stack.trim() ? 'pointer' : 'not-allowed',
@@ -408,7 +418,7 @@ export default function Home() {
                     boxSizing: 'border-box'
                   }}
                 >
-                  {stack.trim() ? '⚡ Generate Scaffold →' : 'Type your stack above...'}
+                  {stack.trim() ? '⚡ Generate Scaffold →' : '⚡ Generate Scaffold'}
                 </motion.button>
               </div>
 
@@ -1024,6 +1034,31 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-    </main>
+      {/* FOOTER */}
+      <div style={{
+        position: 'relative', zIndex: 10,
+        borderTop: '1px solid #21262d',
+        padding: '20px 24px',
+        display: 'flex', alignItems: 'center',
+        justifyContent: 'space-between',
+        background: 'rgba(13,17,23,0.95)',
+        fontSize: 12, color: '#8b949e'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div style={{
+            width: 20, height: 20,
+            background: 'linear-gradient(135deg, #16a34a, #15803d)',
+            borderRadius: 6, display: 'flex',
+            alignItems: 'center', justifyContent: 'center',
+            fontSize: 10, fontWeight: 800, color: 'white'
+          }}>D</div>
+          <span>DevLaunch — Built by <strong style={{ color: '#e6edf3' }}>Prathamesh Patil</strong> for Devlynix Buildathon 2.0</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <span>Powered by</span>
+          <strong style={{ color: '#4ade80' }}>Claude AI</strong>
+        </div>
+      </div>
+    </main >
   )
 }
